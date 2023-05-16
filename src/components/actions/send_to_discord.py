@@ -1,4 +1,4 @@
-from components.actions import Action
+from components.actions.base.action import Action
 import logging
 from discord_webhook import DiscordWebhook, DiscordEmbed
 
@@ -16,7 +16,7 @@ class SendToDiscord(Action):
         response = discord_webhook.execute()
 
     def run(self, *args, **kwargs):
-        super().run(*args, **kwargs)  # this is required
+        super().run(*args, **kwargs)
         self.logger.info(f"{self.name} ---> SendToDiscord action has run!")
         data = self.validate_data()
         """

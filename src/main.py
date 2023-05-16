@@ -72,9 +72,13 @@ def webhook():
         triggered_events = []
         for event in em.get_all():
             if event.webhook:
-                if event.key == data['key']:
-                    event.trigger(data=data)
-                    triggered_events.append(event.name)
+                try: 
+                    if event.key == data['key']:
+                        event.trigger(data=data)
+                        triggered_events.append(event.name)
+                except KeyError:
+                    logger.error(f'KeyError: {data}')
+                    return 'KeyError', 400
 
         if not triggered_events:
             logger.warning(f'No events triggered for webhook request {request.get_json()}')
@@ -113,4 +117,4 @@ def activate_event():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=80)
