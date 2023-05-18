@@ -1,9 +1,9 @@
 # actions
-REGISTERED_ACTIONS = ['PrintData', 'SendToDiscord']
+REGISTERED_ACTIONS = ['DiscordNotify', 'PrintData']
 
 # events
 REGISTERED_EVENTS = ['WebhookReceived']
 
 # links
-REGISTERED_LINKS = [('SendToDiscord', 'WebhookReceived'), ('PrintData', 'WebhookReceived')]
+REGISTERED_LINKS = [('DiscordNotify', 'WebhookReceived'), ('PrintData', 'WebhookReceived')]
 

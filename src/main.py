@@ -70,11 +70,13 @@ def webhook():
 
         logger.info(f'Request Data: {data}')
         triggered_events = []
+        logger.debug(f'All events: {em.get_all()}')
         for event in em.get_all():
             if event.webhook:
                 try: 
                     if event.key == data['key']:
                         event.trigger(data=data)
+                        logger.info(f'Event {event.name} triggered by webhook request {request.get_json()}')
                         triggered_events.append(event.name)
                 except KeyError:
                     logger.error(f'KeyError: {data}')
